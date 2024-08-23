@@ -1,4 +1,4 @@
-name: WorkItem and Pull Request Validation
+name: Pull Request Validation
 
 on:
   pull_request:
@@ -10,5 +10,5 @@ jobs:
   checkout-and-validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
