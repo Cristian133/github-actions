@@ -15,7 +15,7 @@ jobs:
         # descargar y hacer un checkout sobre tu repositorio para que puedas acceder a el dentro del job
       - name: checkout branch
         uses: actions/checkout@v3
-      
+
       - name: ejecutar script de una linea
         run: echo Hello, world
 
