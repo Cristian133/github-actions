@@ -19,5 +19,5 @@ jobs:
           echo ${{ github.event_name }}
       - name: 'mostrar secrets'
         run: |
-          echo ${{ secrets.USER }}
-          echo ${{ secrets.PASSWORD }}
+          echo ${{ secrets.MY_USER }}
+          echo ${{ secrets.MY_PASSWORD }}
