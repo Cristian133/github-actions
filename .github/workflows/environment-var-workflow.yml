@@ -20,4 +20,4 @@ jobs:
       - name: 'mostrar secrets'
         run: |
           echo ${{ secrets.MY_USER }}
-          echo ${{ secrets.MY_PASSWORD }}
+          echo ${{ secrets.CRISTIANANDRIONE }}
