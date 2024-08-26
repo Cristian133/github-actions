@@ -1,8 +1,10 @@
 name: execute python script
 
 on:
-  pull_request:
+  push:
     branches: [main]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -17,4 +19,4 @@ jobs:
         with:
           python-version: '3.12'
 
-      - run: python sript.py
+      - run: python ../scripts/sript.py
