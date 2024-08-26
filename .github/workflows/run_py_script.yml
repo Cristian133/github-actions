@@ -17,4 +17,4 @@ jobs:
         with:
           python-version: '3.12'
 
-      - run: python scripts/script.py
+      - run: python sript.py
