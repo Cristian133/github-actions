@@ -1,0 +1,20 @@
+name: execute python script
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: hacer checkout del repo
+        uses: actions/checkout@v4
+
+      - name: usar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python scripts/script.py
