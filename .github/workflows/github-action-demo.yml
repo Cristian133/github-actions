@@ -16,3 +16,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+      - name: usar python3 para leer SECRETS
+        run: python scripts/main.py
+        env:
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
