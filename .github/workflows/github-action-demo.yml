@@ -1,6 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push,pull_request]
+on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -36,20 +36,6 @@ jobs:
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
           ALIEN: ${{ vars.ALIEN }}
-
-      - name: Get the last commit message
-        id: get_commit_message
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const commitMessage = await github.res.repos.getCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: context.payload.pull_request.head.sha
-            }).then(res => res.data.commit.message);
-
-            console.log(`Commit message: ${commitMessage}`);
-            return commitMessage;
 
       - name: Use commit message
         run: echo "The commit message is ${{ steps.get_commit_message.outputs.commitMessage }}"
