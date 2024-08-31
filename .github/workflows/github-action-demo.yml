@@ -36,3 +36,6 @@ jobs:
 
       - name: Run JavaScript file
         run: node scripts/main.js
+        env:
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+          ALIEN: ${{ vars.ALIEN }}
