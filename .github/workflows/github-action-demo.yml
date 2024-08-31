@@ -1,6 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: [push,pull_request]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -8,10 +8,13 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
@@ -23,12 +26,6 @@ jobs:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
           ALIEN: ${{ vars.ALIEN }}
 
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,3 +36,21 @@ jobs:
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
           ALIEN: ${{ vars.ALIEN }}
+
+
+      - name: Get the last commit message
+        id: get_commit_message
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commitMessage = await github.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.payload.pull_request.head.sha
+            }).then(res => res.data.commit.message);
+
+            console.log(`Commit message: ${commitMessage}`);
+            return commitMessage;
+
+      - name: Use commit message
+        run: echo "The commit message is ${{ steps.get_commit_message.outputs.commitMessage }}"
