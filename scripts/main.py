@@ -4,5 +4,6 @@ import os
 secret_key = os.getenv('MY_SECRET_KEY')
 variable = os.getenv('ALIEN')
 
-print(f"Secret key loaded successfully!\n{secret_key}\nSecret key loaded successfully!{variable}")
+print(f"Secret key loaded successfully!{secret_key}")
+print(f"Variable key loaded successfully!{variable}")
 
