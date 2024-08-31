@@ -37,13 +37,12 @@ jobs:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
           ALIEN: ${{ vars.ALIEN }}
 
-
       - name: Get the last commit message
         id: get_commit_message
         uses: actions/github-script@v6
         with:
           script: |
-            const commitMessage = await github.repos.getCommit({
+            const commitMessage = await github.res.repos.getCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: context.payload.pull_request.head.sha
