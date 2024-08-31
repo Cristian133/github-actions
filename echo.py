@@ -1,4 +1,4 @@
-# echo.py
+#!/usr/bin/env python3
 
 import shlex
 import sys
